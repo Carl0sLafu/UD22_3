@@ -25,6 +25,7 @@ public class View extends JFrame {
 	
 	public JTextField FieldNombreProyect;
 	public JSpinner selectedHours;
+	public JTextField idField;
 	public JButton PutProyecto;
 	
 	public JComboBox<String> ProyectoIDBox;
@@ -39,6 +40,11 @@ public class View extends JFrame {
 	public JTextField nameModifyProyect;
 	public JSpinner selectedHoursModify;
 	public JButton modifyProyecto;
+	
+	public JComboBox<String> selectTableBox;
+	
+	public JTextPane textPane;
+	
 	
 	/**
 	 * Create the frame.
@@ -231,9 +237,22 @@ public class View extends JFrame {
 		deleteasignaxionButton.setBounds(345, 530, 90, 23);
 		contentPane.add(deleteasignaxionButton);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(530, 25, 190, 595);
+		textPane = new JTextPane();
+		textPane.setBounds(530, 44, 190, 576);
 		contentPane.add(textPane);
+		
+		selectTableBox = new JComboBox();
+		selectTableBox.setBounds(530, 11, 190, 22);
+		contentPane.add(selectTableBox);
+		
+		JLabel idlabel = new JLabel("ID*");
+		idlabel.setBounds(270, 105, 46, 14);
+		contentPane.add(idlabel);
+		
+		idField = new JTextField();
+		idField.setBounds(270, 130, 60, 20);
+		contentPane.add(idField);
+		idField.setColumns(10);
 		
 	}
 }

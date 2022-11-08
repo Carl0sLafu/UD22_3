@@ -37,5 +37,22 @@ public class Model {
 		return "";
 		
 	}
+
+	public String[] getTablesDB() throws SQLException {
+		
+		return conexion.getAllTables();
+		
+	}
+
+	public String[] getAllDNI() throws SQLException {
+		
+		return conexion.getAllDNI();
+	}
+
+	public String[] getAllIds() throws SQLException {
+		
+		return conexion.getAllIds();
+		
+	}
 	
 }

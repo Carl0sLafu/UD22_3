@@ -86,7 +86,7 @@ public class Conexion {
 	            //Si falla por aqui se debe al formato que tiene el id
 	            	
 	            String Query2 = "CREATE TABLE proyecto (\r\n"
-	            		+ "id char(4) NOT NULL AUTO_INCREMENT,\r\n"
+	            		+ "id char(4) NOT NULL,\r\n"
 	            		+ "nombre nvarchar(255) NOT NULL,\r\n"
 	            		+ "horas INT NOT NULL,\r\n"
 	            		+ "PRIMARY KEY (id)\r\n"
@@ -195,6 +195,147 @@ public class Conexion {
 			}
 			
 			return select;
+			
+		}
+
+		public String[] getAllTables() throws SQLException {
+			
+			Statement stdb = null;
+			
+			try {
+				
+				stdb = conexion.createStatement();
+				
+			} catch (SQLException e) {
+				
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}
+			
+			ResultSet rs = null;
+			
+			try {
+				
+				rs = stdb.executeQuery("SHOW TABLES");
+			
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+				
+			}
+			
+			String[] tablas = new String[rs.getFetchSize()];
+			
+			rs.beforeFirst();
+			for (int i = 0; i < tablas.length; i++) {
+				
+				tablas[i] = rs.getString("Tables_in_cientificos");
+				
+			}
+			
+			return tablas;
+			
+		}
+
+		
+		public String[] getAllDNI() throws SQLException {
+			
+			Statement stdb = null;
+			
+			try {
+				
+				stdb = conexion.createStatement();
+				
+			} catch (SQLException e) {
+				
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}
+			
+			ResultSet rs = null;
+			
+			try {
+				
+				rs = stdb.executeQuery("SELECT dni FROM cientificos");
+			
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+				
+			}
+			
+			String[] dni;
+			
+			if (rs.getFetchSize() != 0) {
+				
+				dni = new String[rs.getFetchSize()];
+			
+			} else {
+				
+				dni = new String[0];
+				
+			}
+			
+			rs.beforeFirst();
+			for (int i = 0; i < dni.length; i++) {
+				
+				dni[i] = rs.getString("dni");
+				
+			}
+			
+			return dni;
+			
+		}
+
+		public String[] getAllIds() throws SQLException {
+			
+			Statement stdb = null;
+			
+			try {
+				
+				stdb = conexion.createStatement();
+				
+			} catch (SQLException e) {
+				
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				
+			}
+			
+			ResultSet rs = null;
+			
+			try {
+				
+				rs = stdb.executeQuery("SELECT id FROM proyecto");
+			
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+				
+			}
+			
+			String[] id;
+			
+			if (rs.getFetchSize() != 0) {
+				
+				id = new String[rs.getFetchSize()];
+			
+			} else {
+				
+				id = new String[0];
+				
+			}
+			
+			rs.beforeFirst();
+			for (int i = 0; i < id.length; i++) {
+				
+				id[i] = rs.getString("dni");
+				
+			}
+			
+			return id;
 			
 		}
 		
